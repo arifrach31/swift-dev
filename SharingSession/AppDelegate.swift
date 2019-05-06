@@ -15,10 +15,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.splashScreen()
         // Override point for customization after application launch.
         return true
     }
-
+    
+    func splashScreen() {
+        let mainVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+        let idStoryboard = mainVC.instantiateViewController(withIdentifier:
+            "launchScreen")
+        
+        self.window?.rootViewController = idStoryboard
+        self.window?.makeKeyAndVisible()
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector:
+            #selector(rootMain), userInfo: nil, repeats: false)
+    }
+    
+    @objc func rootMain() {
+        let homeVC = UIStoryboard.init(name: "Main", bundle: nil)
+        let idMain = homeVC.instantiateViewController(withIdentifier: "rootMain")
+        
+        self.window?.rootViewController = idMain
+        self.window?.makeKeyAndVisible()
+        
+    }
+    
+    @objc func register() {
+        let registerVC = UIStoryboard.init(name: "Register", bundle: nil)
+        let idRegister = registerVC.instantiateViewController(withIdentifier: "idRegister")
+        
+        self.window?.rootViewController = idRegister
+        self.window?.makeKeyAndVisible()
+        
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
